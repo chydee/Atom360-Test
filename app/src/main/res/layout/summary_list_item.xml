@@ -24,7 +24,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/medical" />
+            tools:src="@drawable/ic_logo" />
 
         <TextView
             android:id="@+id/country_name"
