@@ -4,7 +4,9 @@ import android.content.Context
 import com.chydee.atom360testapp.ui.MainActivity
 import dagger.BindsInstance
 import dagger.Component
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @Component(modules = [NetworkModule::class])
 interface AppComponent {
     @Component.Factory

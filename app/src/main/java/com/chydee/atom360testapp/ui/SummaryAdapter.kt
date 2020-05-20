@@ -20,15 +20,15 @@ import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
 
 
-class SummaryAdapter internal constructor(val context: Context) :
+class SummaryAdapter internal constructor(private val context: Context) :
     RecyclerView.Adapter<SummaryAdapter.ViewHolder>(),
     AutoUpdatableAdapter, Filterable {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var items: ArrayList<Summary.SummaryItem> by Delegates.observable(ArrayList()) { prop, oldList, newList ->
+    private var items: ArrayList<Summary.SummaryItem> by Delegates.observable(ArrayList()) { _, oldList, newList ->
         autoNotify(oldList, newList) { o, n -> o.country == n.country }
     }
     private lateinit var itemsFilter: MutableList<Summary.SummaryItem>
-    var DURATION: Long = 500
+    private var duration: Long = 500
     private var onAttach = true
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -76,12 +76,12 @@ class SummaryAdapter internal constructor(val context: Context) :
     }
 
     private fun leftToRightAnimation(itemView: View, i: Int) {
-        var i = i
+        var x = i
         if (!onAttach) {
-            i = -1
+            x = -1
         }
-        val notFirstItem = i == -1
-        i += 1
+        val notFirstItem = x == -1
+        x += 1
         itemView.translationX = -400f
         itemView.alpha = 0f
         val animatorSet = AnimatorSet()
@@ -89,8 +89,8 @@ class SummaryAdapter internal constructor(val context: Context) :
             ObjectAnimator.ofFloat(itemView, "translationX", -400f, 0f)
         val animatorAlpha = ObjectAnimator.ofFloat(itemView, "alpha", 1f)
         ObjectAnimator.ofFloat(itemView, "alpha", 0f).start()
-        animatorTranslateY.startDelay = if (notFirstItem) DURATION else i * DURATION
-        animatorTranslateY.duration = (if (notFirstItem) 2 else 1) * DURATION
+        animatorTranslateY.startDelay = if (notFirstItem) duration else x * duration
+        animatorTranslateY.duration = (if (notFirstItem) 2 else 1) * duration
         animatorSet.playTogether(animatorTranslateY, animatorAlpha)
         animatorSet.start()
     }
