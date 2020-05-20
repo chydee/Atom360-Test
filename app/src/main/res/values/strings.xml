@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">COVID-19 Update</string>
+    <string name="search_hint">Search for countries</string>
+    <string name="atom360_covid_app">COVID-19 Update</string>
+    <string name="getting_summary_progrss_label">Getting summary…</string>
+    <string name="confirmed">active cases</string>
+    <string name="recovered">recovered</string>
+    <string name="newly_confirmed">tested</string>
+    <string name="total_dead">%1$s deceased</string>
+    <string name="country_s_flag_desc">Country\'s Flag</string>
+    <string name="search">Search</string>
+</resources>
